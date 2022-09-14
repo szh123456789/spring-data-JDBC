@@ -1,5 +1,6 @@
 package com.example.spring_data_jdbc_demo.application;
 
+import com.example.spring_data_jdbc_demo.domain.Users;
 import com.example.spring_data_jdbc_demo.repo.userJdbcRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,9 @@ public class UsersAppService {
     private final userJdbcRepo userJdbcRepo;
 
     public void addUser(){
-
+        Users users = new Users();
+        users.setUsername("xiaojiujiu");
+        users.setPassword("12321");
+        userJdbcRepo.save(users);
     }
 }
