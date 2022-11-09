@@ -1,1 +1,6 @@
+###
 POST {{protocol}}{{host}}/user/add
+
+
+###
+PUT  {{protocol}}{{host}}/user/edit

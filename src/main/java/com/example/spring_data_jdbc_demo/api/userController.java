@@ -4,6 +4,7 @@ import com.example.spring_data_jdbc_demo.application.UsersAppService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,5 +18,10 @@ public class userController {
     @PostMapping("/add")
     public void addUser(){
         usersAppService.addUser();
+    }
+
+    @PutMapping("/edit")
+    public void editUser(){
+        usersAppService.editUser();
     }
 }
