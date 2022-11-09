@@ -1,6 +1,11 @@
-###
 POST {{protocol}}{{host}}/user/add
+Content-Type: application/json
 
+{
+  "username": "szh123",
+  "password": "159753",
+  "userType": 1
+}
 
 ###
 PUT  {{protocol}}{{host}}/user/edit
