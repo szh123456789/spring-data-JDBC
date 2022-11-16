@@ -7,5 +7,9 @@ Content-Type: application/json
   "userType": 1
 }
 
-###
+###  修改用户
 PUT  {{protocol}}{{host}}/user/edit
+
+
+###  删除用户
+DELETE  {{protocol}}{{host}}/user/3

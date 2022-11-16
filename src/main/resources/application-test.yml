@@ -1,9 +1,13 @@
+server:
+  port: 9001
+
 spring:
  datasource:
    driver-class-name: com.mysql.jdbc.Driver
    url: jdbc:mysql://127.0.0.1:3306/testdb?zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai&useSSL=false&allowMultiQueries=true&characterEncoding=utf-8
    username: root
    password: 123
+
 logging:
   level:
     org.springframework.jdbc.core: trace

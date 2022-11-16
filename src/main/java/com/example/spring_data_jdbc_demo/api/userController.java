@@ -1,11 +1,10 @@
 package com.example.spring_data_jdbc_demo.api;
 
 import com.example.spring_data_jdbc_demo.application.UsersAppService;
+import com.example.spring_data_jdbc_demo.request.CreateUserRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -22,5 +21,10 @@ public class userController {
     @PutMapping("/edit")
     public void editUser(){
         usersAppService.editUser();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable("id") Long userId){
+        usersAppService.deleteUser(userId);
     }
 }

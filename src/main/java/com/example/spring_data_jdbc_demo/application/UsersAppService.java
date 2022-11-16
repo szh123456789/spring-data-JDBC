@@ -34,4 +34,8 @@ public class UsersAppService {
             userJdbcRepo.save(users);
         }
     }
+
+    public void deleteUser(Long userId) {
+        userJdbcRepo.deleteById(userId);
+    }
 }
