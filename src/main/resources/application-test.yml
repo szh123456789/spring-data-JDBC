@@ -11,3 +11,6 @@ spring:
 logging:
   level:
     org.springframework.jdbc.core: trace
+
+mybatis-plus:
+  type-enums-package: com.example.spring_data_jdbc_demo.domain

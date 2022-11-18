@@ -2,6 +2,7 @@ package com.example.spring_data_jdbc_demo.api;
 
 import com.example.spring_data_jdbc_demo.application.UsersAppService;
 import com.example.spring_data_jdbc_demo.request.CreateUserRequest;
+import com.example.spring_data_jdbc_demo.response.UserDetailResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +19,18 @@ public class userController {
         usersAppService.addUser(createUserRequest);
     }
 
-    @PutMapping("/edit")
-    public void editUser(){
-        usersAppService.editUser();
+    @PutMapping("/edit/{id}")
+    public void editUser(@PathVariable("id") Long userId,@RequestBody CreateUserRequest createUserRequest){
+        usersAppService.editUser(userId, createUserRequest);
     }
 
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable("id") Long userId){
         usersAppService.deleteUser(userId);
+    }
+
+    @GetMapping("{id}")
+    public UserDetailResponse getUsersDetail(@PathVariable("id") Long userId){
+        return usersAppService.getUsersDetail(userId);
     }
 }
