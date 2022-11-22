@@ -14,10 +14,10 @@ public interface UserConvert {
 
     UserConvert INSTANCE = Mappers.getMapper(UserConvert.class);
 
-    @Mappings({
-            @Mapping(source = "roleId", target = "role.id"),
-            @Mapping(source = "roleName", target = "role.name")
-    })
+//    @Mappings({
+//            @Mapping(source = "roleId", target = "role.id"),
+//            @Mapping(source = "roleName", target = "role.name")
+//    })
     Users request2Users(CreateUserRequest createUserRequest);
 
     default UserType userTypeConvert(Integer code){

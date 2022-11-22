@@ -7,5 +7,5 @@ import lombok.EqualsAndHashCode;
 @Data
 public class SoftDeletableTimeEntity extends IdTimeEntity{
 
-    private Boolean deleted = Boolean.FALSE;
+    private Boolean isDeleted = Boolean.FALSE;
 }

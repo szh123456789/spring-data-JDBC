@@ -2,11 +2,10 @@ POST {{protocol}}{{host}}/user/add
 Content-Type: application/json
 
 {
-  "username": "szh123978",
+  "username": "szhdqwu12`",
   "password": "159798753",
   "userType": 1,
-  "roleId": 2,
-  "roleName": "普通角色"
+  "roleIds": [3]
 }
 
 ###  修改用户
@@ -14,15 +13,14 @@ PUT  {{protocol}}{{host}}/user/edit/1
 Content-Type: application/json
 
 {
-  "username": "szh1239788",
+  "username": "宋志恒123",
   "password": "134564",
   "userType": 1,
-  "roleId": 2,
-  "roleName": "普通角色"
+  "roleIds": [2]
 }
 
 ###  删除用户
-DELETE  {{protocol}}{{host}}/user/5
+DELETE  {{protocol}}{{host}}/user/12
 
 ###  获取用户
 GET  {{protocol}}{{host}}/user/4

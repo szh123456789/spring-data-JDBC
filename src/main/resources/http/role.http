@@ -1,2 +1,10 @@
 ###  删除角色
-DELETE  {{protocol}}{{host}}/role/1
+DELETE  {{protocol}}{{host}}/role/3
+
+### 更改角色
+PUT {{protocol}}{{host}}/role/3
+Content-Type: application/json
+
+{
+  "name": "超超级管理员1"
+}
