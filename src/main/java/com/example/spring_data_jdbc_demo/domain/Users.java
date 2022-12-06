@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.relational.core.mapping.Embedded;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.List;
@@ -22,6 +23,8 @@ public class Users extends SoftDeletableTimeEntity {
     private String username;
     private String password;
     private UserType userType;
+
+    @MappedCollection(idColumn = "user_id")
     private Set<UserRole> userRoles = Sets.newHashSet();
 
     public void addUserRoles(List<Role> roles) {

@@ -8,15 +8,11 @@ import com.example.spring_data_jdbc_demo.repo.RoleJdbcRepo;
 import com.example.spring_data_jdbc_demo.repo.userJdbcRepo;
 import com.example.spring_data_jdbc_demo.request.CreateUserRequest;
 import com.example.spring_data_jdbc_demo.response.UserDetailResponse;
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.message.ReusableMessage;
-import org.springframework.boot.autoconfigure.info.ProjectInfoProperties;
 import org.springframework.stereotype.Service;
 
-import javax.jws.soap.SOAPBinding;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -57,5 +53,16 @@ public class UsersAppService {
         users.setUserType(users1.getUserType());
         users.setUsername(users1.getUsername());
         users.setPassword(users1.getPassword());
+    }
+
+    public List<UserDetailResponse> getUsersList(List<Long> ids) {
+        List<Users> users = userJdbcRepo.findByIdIn(ids);
+        List<UserDetailResponse> userDetailResponses = new ArrayList<>();
+
+        users.forEach(usr ->
+            userDetailResponses.add(UserConvert.INSTANCE.users2Response(usr))
+        );
+
+        return userDetailResponses;
     }
 }

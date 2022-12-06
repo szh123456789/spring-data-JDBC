@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
@@ -32,5 +34,10 @@ public class userController {
     @GetMapping("{id}")
     public UserDetailResponse getUsersDetail(@PathVariable("id") Long userId){
         return usersAppService.getUsersDetail(userId);
+    }
+
+    @GetMapping
+    public List<UserDetailResponse> getUsersList(@RequestParam(value = "ids", required = false) List<Long> ids){
+        return usersAppService.getUsersList(ids);
     }
 }
