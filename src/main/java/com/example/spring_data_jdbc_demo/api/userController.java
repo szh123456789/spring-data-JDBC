@@ -1,9 +1,11 @@
 package com.example.spring_data_jdbc_demo.api;
 
 import com.example.spring_data_jdbc_demo.application.UsersAppService;
+import com.example.spring_data_jdbc_demo.domain.Users;
 import com.example.spring_data_jdbc_demo.request.CreateUserRequest;
 import com.example.spring_data_jdbc_demo.response.UserDetailResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,5 +41,10 @@ public class userController {
     @GetMapping
     public List<UserDetailResponse> getUsersList(@RequestParam(value = "ids", required = false) List<Long> ids){
         return usersAppService.getUsersList(ids);
+    }
+
+    @GetMapping("page")
+    public Page<UserDetailResponse> getPageUsers(@RequestParam(value = "ids", required = false) List<Long> ids){
+        return usersAppService.pageUsers(ids);
     }
 }

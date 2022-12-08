@@ -5,6 +5,7 @@ Content-Type: application/json
   "username": "测试234",
   "password": "159798753",
   "userType": 1,
+  "name": "test",
   "roleIds": [2,1]
 }
 
@@ -23,7 +24,10 @@ Content-Type: application/json
 DELETE  {{protocol}}{{host}}/user/12
 
 ###  获取用户
-GET  {{protocol}}{{host}}/user/4
+GET  {{protocol}}{{host}}/user/2
 
 ###  获取用户列表
 GET  {{protocol}}{{host}}/user?ids=9,10,11
+
+### 用户分页
+GET  {{protocol}}{{host}}/user/page?ids=

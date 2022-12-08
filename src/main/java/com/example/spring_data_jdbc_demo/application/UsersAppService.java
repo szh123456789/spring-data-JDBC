@@ -9,6 +9,8 @@ import com.example.spring_data_jdbc_demo.repo.userJdbcRepo;
 import com.example.spring_data_jdbc_demo.request.CreateUserRequest;
 import com.example.spring_data_jdbc_demo.response.UserDetailResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UsersAppService {
 
-    private final userJdbcRepo userJdbcRepo;
+    private final userJdbcRepo jdbcRepo;
     private final RoleJdbcRepo roleJdbcRepo;
 
     public void addUser(CreateUserRequest createUserRequest){
@@ -26,25 +28,26 @@ public class UsersAppService {
         users.setUserType(UserType.of(createUserRequest.getUserType()));
         List<Role> roleList = (List<Role>) roleJdbcRepo.findAllById(createUserRequest.getRoleIds());
         users.addUserRoles(roleList);
-        userJdbcRepo.save(users);
+        jdbcRepo.save(users);
     }
 
     public void editUser(Long userId, CreateUserRequest createUserRequest){
-        Users users = userJdbcRepo.findByIdAndUsername(userId, "宋志恒123");
+        Users users = jdbcRepo.findByIdAndUsername(userId, "宋志恒123");
         invoke(users, createUserRequest);
 
         List<Role> roleList = (List<Role>) roleJdbcRepo.findAllById(createUserRequest.getRoleIds());
         users.addUserRoles(roleList);
-        userJdbcRepo.save(users);
+        jdbcRepo.save(users);
 
     }
 
     public void deleteUser(Long userId) {
-        userJdbcRepo.deleteById(userId);
+        jdbcRepo.deleteById(userId);
     }
 
     public UserDetailResponse getUsersDetail(Long userId) {
-        Users user = userJdbcRepo.findById(userId).get();
+//        Users user = userJdbcRepo.findById(userId).get();
+        Users user = jdbcRepo.findByName("李四");
         return UserConvert.INSTANCE.users2Response(user);
     }
 
@@ -56,7 +59,7 @@ public class UsersAppService {
     }
 
     public List<UserDetailResponse> getUsersList(List<Long> ids) {
-        List<Users> users = userJdbcRepo.findByIdIn(ids);
+        List<Users> users = jdbcRepo.findByIdIn(ids);
         List<UserDetailResponse> userDetailResponses = new ArrayList<>();
 
         users.forEach(usr ->
@@ -64,5 +67,11 @@ public class UsersAppService {
         );
 
         return userDetailResponses;
+    }
+
+    public Page<UserDetailResponse> pageUsers(List<Long> ids){
+        PageRequest pageRequest = PageRequest.of(1, 10);
+
+        return jdbcRepo.findByIdIn(ids, pageRequest);
     }
 }
